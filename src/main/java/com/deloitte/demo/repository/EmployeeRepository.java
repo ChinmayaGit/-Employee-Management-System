@@ -26,6 +26,14 @@ public class EmployeeRepository {
         entityManager.close();
         return employees;
     }
+    
+  
+    public Employee getEmployeeById(int id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Employee employee = entityManager.find(Employee.class, id);
+        entityManager.close();
+        return employee;
+    }
 
     // Implement other methods like updateEmployee, getEmployeeById, deleteEmployee...
 }

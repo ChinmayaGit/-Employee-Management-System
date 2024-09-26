@@ -18,6 +18,10 @@ public class EmployeeService {
 //		System.out.println();
 		return employeeRepository.getAllEmployees();
 	}
+	
+	public Employee getEmployeeById(int id) {
+	    return employeeRepository.getEmployeeById(id);
+	}
 
 }
 
