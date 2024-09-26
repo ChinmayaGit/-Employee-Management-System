@@ -47,6 +47,25 @@ public class EmployeeRepository {
         entityManager.getTransaction().commit();
         entityManager.close();
     }
+    
+    public Employee updateEmployee(int id, Employee updatedEmployee) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        Employee employee = entityManager.find(Employee.class, id);
+
+        if (employee != null) {
+            employee.setFirstName(updatedEmployee.getFirstName());
+            employee.setSalary(updatedEmployee.getSalary());
+        } else {
+            entityManager.getTransaction().rollback();
+            entityManager.close();
+            return null; 
+        }
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return employee;
+    }
 
     // Implement other methods like updateEmployee, getEmployeeById, deleteEmployee...
 }
