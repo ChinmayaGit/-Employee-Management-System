@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import com.deloitte.demo.model.Employee;
 import com.deloitte.demo.service.EmployeeService;
 
-@Path("/employees")
+@Path("/employee")
 public class EmployeeResource {
 
 	private EmployeeService empService =  new EmployeeService();
