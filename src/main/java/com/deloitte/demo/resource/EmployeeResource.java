@@ -5,6 +5,7 @@ package com.deloitte.demo.resource;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -44,6 +45,19 @@ public class EmployeeResource {
 	    }
 	}
 	
+	@DELETE
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteEmployee(@PathParam("id") int id) {
+	    Employee emp = empService.getEmployeeById(id);  // Check if the employee exists
+	    
+	    if (emp != null) {
+	        empService.deleteEmployee(id);  // Delete the employee
+	        return Response.status(Response.Status.NO_CONTENT).entity("Employee deleted successfully").build();
+	    } else {
+	        return Response.status(Response.Status.NOT_FOUND).entity("Employee not found").build();
+	    }
+	}
 	
 
 	@POST
@@ -54,7 +68,6 @@ public class EmployeeResource {
 		return Response.status(Response.Status.CREATED).entity(emp).header("messsage", "employee added successfully!")
 				.build();
 	}
-
 //	implement these methods - 
 //	getEmployeeById
 //	updateEmployee 

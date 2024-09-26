@@ -34,6 +34,19 @@ public class EmployeeRepository {
         entityManager.close();
         return employee;
     }
+    
+    public void deleteEmployee(int id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        Employee employee = entityManager.find(Employee.class, id);
+        
+        if (employee != null) {
+            entityManager.remove(employee);  // Remove the employee if it exists
+        }
+        
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
 
     // Implement other methods like updateEmployee, getEmployeeById, deleteEmployee...
 }

@@ -23,6 +23,9 @@ public class EmployeeService {
 	    return employeeRepository.getEmployeeById(id);
 	}
 
+	public void deleteEmployee(int id) {
+	    employeeRepository.deleteEmployee(id);
+	}
 }
 
 //package com.deloitte.demo.service;
