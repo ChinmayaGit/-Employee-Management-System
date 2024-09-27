@@ -6,21 +6,28 @@
 
 	<persistence-unit name="EmployeePU">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
+		
+		<class>com.deloitte.demo.model.Employee</class>
+        <class>com.deloitte.demo.model.Department</class>
+        
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/adi" />
+				value="jdbc:mysql://localhost:3306/mugdha" />
 			<property name="javax.persistence.jdbc.user"
 				value="root" />
 			<property name="javax.persistence.jdbc.password"
-				value="Aditya@13" />
+				value="root" />
 
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5Dialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
+			
+			
 		</properties>
 	</persistence-unit>
+	
+	
 </persistence>

@@ -22,7 +22,7 @@ public class EmployeeRepository {
 
     public List<Employee> getAllEmployees() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e", Employee.class).getResultList();
+        List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e JOIN FETCH e.department", Employee.class).getResultList();
         entityManager.close();
         return employees;
     }
@@ -48,14 +48,20 @@ public class EmployeeRepository {
         entityManager.close();
     }
     
-    public Employee updateEmployee(int id, Employee updatedEmployee) {
+    public Employee updateEmployee(int id, Employee updatedEmployee, DepartmentRepository departmentRepository) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
+        
         Employee employee = entityManager.find(Employee.class, id);
-
+        
         if (employee != null) {
+            // Update the employee's details
             employee.setFirstName(updatedEmployee.getFirstName());
             employee.setSalary(updatedEmployee.getSalary());
+            employee.setDepartmentId(updatedEmployee.getDepartmentId(), departmentRepository);
+           
+              
+          
         } else {
             entityManager.getTransaction().rollback();
             entityManager.close();
@@ -66,6 +72,8 @@ public class EmployeeRepository {
         entityManager.close();
         return employee;
     }
+
+
 
     // Implement other methods like updateEmployee, getEmployeeById, deleteEmployee...
 }
