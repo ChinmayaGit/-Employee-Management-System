@@ -14,26 +14,27 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String empName; // Assuming this relates to an employee
-    private String address;
+    private String name; // Change empName to name
+    private String location; // Change address to location
 
     public Department() {
         super();
     }
 
-    public Department(String empName, String address) {
+    public Department(String name, String location) { // Updated constructor
         super();
-        this.empName = empName;
-        this.address = address;
+        this.name = name; // Set name
+        this.location = location; // Set location
     }
 
-    public Department(int id, String empName, String address) {
+    public Department(int id, String name, String location) { // Updated constructor
         super();
         this.id = id;
-        this.empName = empName;
-        this.address = address;
+        this.name = name; // Set name
+        this.location = location; // Set location
     }
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -42,24 +43,24 @@ public class Department {
         this.id = id;
     }
 
-    public String getEmpName() {
-        return empName;
+    public String getName() { // Getter for name
+        return name;
     }
 
-    public void setEmpName(String empName) {
-        this.empName = empName;
+    public void setName(String name) { // Setter for name
+        this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getLocation() { // Getter for location
+        return location;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setLocation(String location) { // Setter for location
+        this.location = location;
     }
 
     @Override
     public String toString() {
-        return "Department [id=" + id + ", empName=" + empName + ", address=" + address + "]";
+        return "Department [id=" + id + ", name=" + name + ", location=" + location + "]"; // Updated toString
     }
 }

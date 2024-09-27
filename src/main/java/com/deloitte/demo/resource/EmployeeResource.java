@@ -71,4 +71,19 @@ public class EmployeeResource {
         }
         return Response.ok().entity(emp).header("message", "Employee updated successfully!").build();
     }
+    @GET
+    @Path("/dept/{deptId}/employees") // Make sure this matches your request URL
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getEmployeesByDeptId(@PathParam("deptId") int deptId) {
+        List<Employee> employees = empService.getEmployeesByDeptId(deptId);
+        if (employees.isEmpty()) {
+            return Response.status(Response.Status.NOT_FOUND)
+                           .entity("No employees found for department ID: " + deptId)
+                           .build();
+        }
+        return Response.ok(employees).build();
+    }
+
+
+
 }

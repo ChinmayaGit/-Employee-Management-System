@@ -53,8 +53,8 @@ public class DepartmentRepository {
         Department department = entityManager.find(Department.class, id);
 
         if (department != null) {
-            department.setEmpName(updatedDepartment.getEmpName());
-            department.setAddress(updatedDepartment.getAddress());
+            department.setName(updatedDepartment.getName()); // Use getName()
+            department.setLocation(updatedDepartment.getLocation()); // Use getLocation()
             entityManager.merge(department);
         } else {
             entityManager.getTransaction().rollback();
@@ -66,4 +66,5 @@ public class DepartmentRepository {
         entityManager.close();
         return department;
     }
+
 }

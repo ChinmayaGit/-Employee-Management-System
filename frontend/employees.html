@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Employee Management</h1>
+
+        <h2 class="mt-4">All Employees</h2>
+        <div id="employeeList"></div>
+        <button class="btn btn-primary" onclick="viewAllEmployees()">View All Employees</button>
+
+        <h2 class="mt-4">Employees by Department</h2>
+        <input type="number" id="deptIdInput" class="form-control" placeholder="Enter Department ID">
+        <button class="btn btn-info mt-2" onclick="viewEmployeesByDept()">View Employees by Dept</button>
+        <div id="employeesByDeptList" class="mt-2"></div>
+
+        <h2 class="mt-4">Add Employee</h2>
+        <input type="text" id="addName" class="form-control" placeholder="Enter Employee Name">
+        <input type="number" id="addSalary" class="form-control mt-2" placeholder="Enter Salary">
+        <input type="number" id="addDeptId" class="form-control mt-2" placeholder="Enter Department ID">
+        <button class="btn btn-success mt-2" onclick="addEmployee()">Add Employee</button>
+        <div id="addResult" class="mt-2"></div>
+
+        <div class="mt-4">
+            <a href="departments.html" class="btn btn-secondary">Manage Departments</a>
+        </div>
+    </div>
+</body>
+</html>
