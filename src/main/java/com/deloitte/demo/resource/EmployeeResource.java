@@ -1,5 +1,3 @@
-// EmployeeResource.java 
-
 package com.deloitte.demo.resource;
 
 import java.util.List;
@@ -21,52 +19,48 @@ import com.deloitte.demo.service.EmployeeService;
 @Path("/employees")
 public class EmployeeResource {
 
-	private EmployeeService empService = new EmployeeService();
-//	private EmployeeService empService =  EmployeeService.getInstance();
+    private EmployeeService empService = new EmployeeService();
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Employee> getAllEmployees() {
-		return empService.getAllEmployees();
-	}
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Employee> getAllEmployees() {
+        return empService.getAllEmployees();
+    }
 
-	@GET
-	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getEmployeeById(@PathParam("id") int id) {
-		Employee emp = empService.getEmployeeById(id);
-		if (emp != null) {
-			return Response.ok(emp).build();
-		} else {
-			return Response.status(Response.Status.NOT_FOUND).entity("Employee not found").build();
-		}
-	}
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getEmployeeById(@PathParam("id") int id) {
+        Employee emp = empService.getEmployeeById(id);
+        if (emp != null) {
+            return Response.ok(emp).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).entity("Employee not found").build();
+        }
+    }
 
-	@DELETE
-	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteEmployee(@PathParam("id") int id) {
-		Employee emp = empService.getEmployeeById(id); // Check if the employee exists
+    @DELETE
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteEmployee(@PathParam("id") int id) {
+        Employee emp = empService.getEmployeeById(id);
+        if (emp != null) {
+            empService.deleteEmployee(id);
+            return Response.status(Response.Status.NO_CONTENT).entity("Employee deleted successfully").build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).entity("Employee not found").build();
+        }
+    }
 
-		if (emp != null) {
-			empService.deleteEmployee(id); // Delete the employee
-			return Response.status(Response.Status.NO_CONTENT).entity("Employee deleted successfully").build();
-		} else {
-			return Response.status(Response.Status.NOT_FOUND).entity("Employee not found").build();
-		}
-	}
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addEmployee(Employee employee) {
+        Employee emp = empService.addEmployee(employee);
+        return Response.status(Response.Status.CREATED).entity(emp).header("message", "Employee added successfully!").build();
+    }
 
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addEmployee(Employee employee) {
-		Employee emp = empService.addEmployee(employee);
-		return Response.status(Response.Status.CREATED).entity(emp).header("messsage", "employee added successfully!")
-				.build();
-	}
-	
-	
-	@PUT
+    @PUT
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -77,9 +71,4 @@ public class EmployeeResource {
         }
         return Response.ok().entity(emp).header("message", "Employee updated successfully!").build();
     }
-//	implement these methods - 
-//	getEmployeeById
-//	updateEmployee 
-//	deleteEmployee 
-
 }
