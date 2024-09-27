@@ -14,10 +14,11 @@ public class EmployeeRepository {
     public Employee addEmployee(Employee employee) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(employee);
+        // Use merge instead of persist to handle detached entities
+        Employee mergedEmployee = entityManager.merge(employee);
         entityManager.getTransaction().commit();
         entityManager.close();
-        return employee;
+        return mergedEmployee;
     }
 
     public List<Employee> getAllEmployees() {
@@ -54,18 +55,21 @@ public class EmployeeRepository {
         Employee employee = entityManager.find(Employee.class, id);
 
         if (employee != null) {
+            // Use merge to update the entity and reattach it to the persistence context
             employee.setFirstName(updatedEmployee.getFirstName());
             employee.setSalary(updatedEmployee.getSalary());
+            entityManager.merge(employee);
         } else {
             entityManager.getTransaction().rollback();
             entityManager.close();
-            return null; 
+            return null;
         }
 
         entityManager.getTransaction().commit();
         entityManager.close();
         return employee;
     }
+
 
     // Implement other methods like updateEmployee, getEmployeeById, deleteEmployee...
 }

@@ -10,56 +10,67 @@ import javax.persistence.Table;
 @Table(name = "employee")
 public class Employee {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	private String firstName;
-	private double salary;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private String firstName;
+    private double salary;
+    private String dept_id;  // Add dept_id field
 
-	public Employee() {
-		super();
-	}
+    public Employee() {
+        super();
+    }
 
-	public Employee(String firstName, double salary) {
-		super();
-		this.firstName = firstName;
-		this.salary = salary;
-	}
+    public Employee(String firstName, double salary, String dept_id) {  // Updated constructor
+        super();
+        this.firstName = firstName;
+        this.salary = salary;
+        this.dept_id = dept_id;  // Set dept_id
+    }
 
-	public Employee(int id, String firstName, double salary) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.salary = salary;
-	}
+    public Employee(int id, String firstName, double salary, String dept_id) {  // Updated constructor
+        super();
+        this.id = id;
+        this.firstName = firstName;
+        this.salary = salary;
+        this.dept_id = dept_id;  // Set dept_id
+    }
 
-	public int getId() {
-		return id;
-	}
+    // Getters and Setters
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public double getSalary() {
-		return salary;
-	}
+    public double getSalary() {
+        return salary;
+    }
 
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", salary=" + salary + "]";
-	}
+    public String getDeptId() {  // Getter for dept_id
+        return dept_id;
+    }
 
+    public void setDeptId(String dept_id) {  // Setter for dept_id
+        this.dept_id = dept_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [id=" + id + ", firstName=" + firstName + ", salary=" + salary + ", dept_id=" + dept_id + "]";  // Include dept_id
+    }
 }
