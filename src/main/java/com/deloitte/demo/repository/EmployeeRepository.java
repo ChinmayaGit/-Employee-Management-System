@@ -55,9 +55,10 @@ public class EmployeeRepository {
         Employee employee = entityManager.find(Employee.class, id);
 
         if (employee != null) {
-            // Use merge to update the entity and reattach it to the persistence context
-            employee.setFirstName(updatedEmployee.getFirstName());
+            // Update the fields with the values from updatedEmployee
+            employee.setName(updatedEmployee.getName()); // Change to getName()
             employee.setSalary(updatedEmployee.getSalary());
+            employee.setDeptId(updatedEmployee.getDeptId()); // Update deptId if applicable
             entityManager.merge(employee);
         } else {
             entityManager.getTransaction().rollback();
@@ -70,6 +71,14 @@ public class EmployeeRepository {
         return employee;
     }
 
+    public List<Employee> getEmployeesByDeptId(int deptId) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e WHERE e.deptId = :deptId", Employee.class)
+                                                .setParameter("deptId", deptId)
+                                                .getResultList();
+        entityManager.close();
+        return employees;
+    }
 
     // Implement other methods like updateEmployee, getEmployeeById, deleteEmployee...
 }

@@ -1,3 +1,4 @@
+// Employee.java
 package com.deloitte.demo.model;
 
 import javax.persistence.Entity;
@@ -13,27 +14,27 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String firstName;
+    private String name; // Change firstName to name
     private double salary;
-    private String dept_id;  // Add dept_id field
+    private int deptId;  // Use int for deptId to match database type
 
     public Employee() {
         super();
     }
 
-    public Employee(String firstName, double salary, String dept_id) {  // Updated constructor
+    public Employee(String name, double salary, int deptId) {  // Updated constructor
         super();
-        this.firstName = firstName;
+        this.name = name;  // Set name
         this.salary = salary;
-        this.dept_id = dept_id;  // Set dept_id
+        this.deptId = deptId;  // Set deptId
     }
 
-    public Employee(int id, String firstName, double salary, String dept_id) {  // Updated constructor
+    public Employee(int id, String name, double salary, int deptId) {  // Updated constructor
         super();
         this.id = id;
-        this.firstName = firstName;
+        this.name = name;  // Set name
         this.salary = salary;
-        this.dept_id = dept_id;  // Set dept_id
+        this.deptId = deptId;  // Set deptId
     }
 
     // Getters and Setters
@@ -45,12 +46,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {  // Updated getter
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {  // Updated setter
+        this.name = name;
     }
 
     public double getSalary() {
@@ -61,16 +62,16 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getDeptId() {  // Getter for dept_id
-        return dept_id;
+    public int getDeptId() {  // Updated getter to int
+        return deptId;
     }
 
-    public void setDeptId(String dept_id) {  // Setter for dept_id
-        this.dept_id = dept_id;
+    public void setDeptId(int deptId) {  // Updated setter to int
+        this.deptId = deptId;
     }
 
     @Override
     public String toString() {
-        return "Employee [id=" + id + ", firstName=" + firstName + ", salary=" + salary + ", dept_id=" + dept_id + "]";  // Include dept_id
+        return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", deptId=" + deptId + "]";  // Updated toString
     }
 }

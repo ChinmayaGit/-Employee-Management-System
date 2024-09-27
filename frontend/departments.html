@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Department Management</h1>
+
+        <h2 class="mt-4">All Departments</h2>
+        <div id="departmentList"></div>
+        <button class="btn btn-primary" onclick="viewAllDepartments()">View All Departments</button>
+
+        <h2 class="mt-4">Add Department</h2>
+        <input type="text" id="addDeptName" class="form-control" placeholder="Enter Department Name">
+        <input type="text" id="addDeptLocation" class="form-control mt-2" placeholder="Enter Department Location">
+        <button class="btn btn-success mt-2" onclick="addDepartment()">Add Department</button>
+        <div id="addDeptResult" class="mt-2"></div>
+
+        <div class="mt-4">
+            <a href="employees.html" class="btn btn-secondary">Manage Employees</a>
+        </div>
+    </div>
+</body>
+</html>

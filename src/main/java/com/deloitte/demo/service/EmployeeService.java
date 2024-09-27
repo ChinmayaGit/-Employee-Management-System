@@ -27,4 +27,8 @@ public class EmployeeService {
     public Employee updateEmployee(int id, Employee updatedEmployee) {
         return employeeRepository.updateEmployee(id, updatedEmployee);
     }
+    public List<Employee> getEmployeesByDeptId(int deptId) {
+        return employeeRepository.getEmployeesByDeptId(deptId);
+    }
+
 }
